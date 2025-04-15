@@ -2,7 +2,7 @@
 
 import { useSortStore } from "@/store/sort-store";
 import { Button } from "../ui/button";
-import { sortableFields } from "@/data/mock-clients";
+// import { sortableFields } from "@/data/mock-clients";
 import {
   DndContext,
   closestCenter,
@@ -53,27 +53,27 @@ export function SortPanel({ onClose }: SortPanelProps) {
     }
   }
 
-  const getFieldIcon = (fieldName: string) => {
-    switch (fieldName) {
-      case "name":
-        return <User2 className="h-4 w-4 text-gray-500" />;
-      case "createdAt":
-      case "updatedAt":
-        return <CalendarIcon className="h-4 w-4 text-gray-500" />;
-      case "id":
-        return <GridIcon className="h-4 w-4 text-gray-500" />;
-      default:
-        return null;
-    }
-  };
+  // const getFieldIcon = (fieldName: string) => {
+  //   switch (fieldName) {
+  //     case "name":
+  //       return <User2 className="h-4 w-4 text-gray-500" />;
+  //     case "createdAt":
+  //     case "updatedAt":
+  //       return <CalendarIcon className="h-4 w-4 text-gray-500" />;
+  //     case "id":
+  //       return <GridIcon className="h-4 w-4 text-gray-500" />;
+  //     default:
+  //       return null;
+  //   }
+  // };
 
   // Fields that are available to add (not already in sortCriteria)
-  const availableFields = {
-    name: "Client Name",
-    id: "Client ID",
-    createdAt: "Created At",
-    updatedAt: "Updated At",
-  };
+  // const availableFields = {
+  //   name: "Client Name",
+  //   id: "Client ID",
+  //   createdAt: "Created At",
+  //   updatedAt: "Updated At",
+  // };
 
   // Check if field is already used in sort criteria
   const isFieldInUse = (field: string) => {
@@ -235,7 +235,7 @@ function SortableItem({
   onRemove: () => void;
   onUpdateDirection: (direction: "asc" | "desc") => void;
 }) {
-  const { attributes, listeners, setNodeRef, isDragging } = useSortable({
+  const { attributes, listeners, setNodeRef } = useSortable({
     id: criterion.id,
   });
 
