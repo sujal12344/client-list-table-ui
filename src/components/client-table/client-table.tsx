@@ -188,6 +188,28 @@ export function ClientTable({ data }: ClientTableProps) {
               className="pl-9 pr-3 py-2 border rounded-md w-48 text-sm focus:outline-none focus:ring-1 focus:ring-black"
             />
           </div>
+          <div className="">
+            <Button
+              ref={sortButtonRef}
+              variant="outline"
+              className="flex items-center gap-2"
+              onClick={() => {
+                setSortPanelVisible(!sortPanelVisible);
+                setFilterPanelVisible(false);
+              }}
+            >
+              <Filter className="h-4 w-4" />
+              {sortCriteria.length > 0
+                ? `Sort (${sortCriteria.length})`
+                : "Sort"}
+            </Button>
+
+            {sortPanelVisible && (
+              <div ref={panelRef} className="absolute right-0 bottom-50 z-50">
+                <SortPanel onClose={() => setSortPanelVisible(false)} />
+              </div>
+            )}
+          </div>
           <div className="relative" ref={filterButtonRef}>
             {activeFilterCount > 0 && (
               <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -264,26 +286,7 @@ export function ClientTable({ data }: ClientTableProps) {
           </Table>
         </div>
 
-        <div className="mt-4 flex justify-between items-center">
-          <Button
-            ref={sortButtonRef}
-            variant="outline"
-            className="flex items-center gap-2"
-            onClick={() => {
-              setSortPanelVisible(!sortPanelVisible);
-              setFilterPanelVisible(false);
-            }}
-          >
-            <Filter className="h-4 w-4" />
-            {sortCriteria.length > 0 ? `Sort (${sortCriteria.length})` : "Sort"}
-          </Button>
-
-          {sortPanelVisible && (
-            <div ref={panelRef} className="absolute left-0 top-10 z-50">
-              <SortPanel onClose={() => setSortPanelVisible(false)} />
-            </div>
-          )}
-
+        <div className="mt-4 flex justify-end items-center">
           {table.getPageCount() > 1 && (
             <div className="flex items-center space-x-2">
               <Button
