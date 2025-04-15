@@ -66,7 +66,7 @@ export const useFilterStore = create<FilterStore>()(
       },
 
       setSearchTerm: (term) => {
-        set({ searchTerm: term.trim() });
+        set({ searchTerm: term });
       },
 
       getActiveFilterCount: () => {
