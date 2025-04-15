@@ -22,7 +22,7 @@ import { useClientSort } from "@/hooks/use-sort";
 import { SortPanel } from "./sort-panel";
 import { FilterPanel } from "./filter-panel";
 import { Button } from "../ui/button";
-import { Filter, Plus, Search } from "lucide-react";
+import { ArrowUpDown, Filter, Plus, Search } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 interface ClientTableProps {
@@ -198,7 +198,7 @@ export function ClientTable({ data }: ClientTableProps) {
                 setFilterPanelVisible(false);
               }}
             >
-              <Filter className="h-4 w-4" />
+              <ArrowUpDown className="h-4 w-4" />
               {sortCriteria.length > 0
                 ? `Sort (${sortCriteria.length})`
                 : "Sort"}
