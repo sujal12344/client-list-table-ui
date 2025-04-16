@@ -33,15 +33,14 @@ export function ClientTable({ data }: ClientTableProps) {
   const [activeTab, setActiveTab] = useState<"all" | "individual" | "company">(
     "all"
   );
-  const sortCriteria = useSortStore((state) => state.sortCriteria);
-  const sortedClients = useClientSort(data, sortCriteria);
-
   const [sortPanelVisible, setSortPanelVisible] = useState(false);
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
 
-  // Filter state
+  const { sortCriteria } = useSortStore();
   const { status, type, searchTerm, setSearchTerm, getActiveFilterCount } =
     useFilterStore();
+
+  const sortedClients = useClientSort(data, sortCriteria);
 
   // Close panels when clicking outside
   const sortButtonRef = useRef<HTMLButtonElement>(null);
@@ -71,9 +70,7 @@ export function ClientTable({ data }: ClientTableProps) {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Apply all filters: tabs, status, type, and search
@@ -147,6 +144,9 @@ export function ClientTable({ data }: ClientTableProps) {
       <div className="flex justify-between items-center border-b pb-4">
         <div className="tabs flex gap-6">
           <button
+            title="All Clients"
+            aria-label="All Clients"
+            type="button"
             className={`pb-4 px-2 ${
               activeTab === "all"
                 ? "border-b-2 border-black font-medium"
@@ -157,6 +157,9 @@ export function ClientTable({ data }: ClientTableProps) {
             All
           </button>
           <button
+            title="Individual Clients"
+            aria-label="Individual Clients"
+            type="button"
             className={`pb-4 px-2 ${
               activeTab === "individual"
                 ? "border-b-2 border-black font-medium"
@@ -167,6 +170,9 @@ export function ClientTable({ data }: ClientTableProps) {
             Individual
           </button>
           <button
+            title="Company Clients"
+            aria-label="Company Clients"
+            type="button"
             className={`pb-4 px-2 ${
               activeTab === "company"
                 ? "border-b-2 border-black font-medium"
