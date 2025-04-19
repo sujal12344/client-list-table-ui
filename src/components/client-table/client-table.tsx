@@ -23,7 +23,7 @@ import { SortPanel } from "./sort-panel";
 import { FilterPanel } from "./filter-panel";
 import { Button } from "../ui/button";
 import { ArrowUpDown, Filter, Plus, Search } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 interface ClientTableProps {
   data: Client[];
@@ -47,7 +47,7 @@ export function ClientTable({ data }: ClientTableProps) {
   const filterButtonRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       // Skip if clicking on the buttons that toggle panels
       if (
